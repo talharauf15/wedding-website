@@ -6,10 +6,10 @@ import { photos } from "@/lib/wedding";
 export type PhotoSpec = { src: string; alt: string; position?: string; zoom?: number };
 // Either `id` (looked up in the shared photos map) or an inline `photo`, which
 // lets list data such as brideParty carry its own portraits.
-export function Photo({ id, photo: spec, className = "", priority = false }: { id?: string; photo?: PhotoSpec; className?: string; priority?: boolean }) {
+export function Photo({ id, photo: spec, className = "", priority = false, sizes = "(min-width: 1100px) 45vw, (min-width: 768px) 60vw, 100vw" }: { id?: string; photo?: PhotoSpec; className?: string; priority?: boolean; sizes?: string }) {
   const photo = spec ?? photos[id!];
   return <div className={`photo ${className}`}>
-    {photo.src ? <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1100px) 45vw, (min-width: 768px) 60vw, 100vw" priority={priority} className="object-cover" style={{ objectPosition: photo.position, transform: photo.zoom ? `scale(${photo.zoom})` : undefined, transformOrigin: photo.position }} /> : <div className="photo-placeholder"><span>Photograph to come</span><em>{photo.alt}</em></div>}
+    {photo.src ? <Image src={photo.src} alt={photo.alt} fill sizes={sizes} priority={priority} className="object-cover" style={{ objectPosition: photo.position, transform: photo.zoom ? `scale(${photo.zoom})` : undefined, transformOrigin: photo.position }} /> : <div className="photo-placeholder"><span>Photograph to come</span><em>{photo.alt}</em></div>}
   </div>;
 }
 export function Arch({ className = "" }: { className?: string }) {
