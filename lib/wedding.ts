@@ -54,11 +54,16 @@ export const rsvp = {
 };
 
 export const navigation =[["hero", "Home"], ["invitation", "Invitation"], ["story", "Our Story"], ["events", "Events"], ["nikkah", "Nikkah"], ["families", "Families"], ["party", "Bride’s Side"], ["schedule", "Schedule"], ["venue", "Venue"], ["gallery", "Gallery"], ["rsvp", "RSVP"]];
-export const photos: Record<string, { src: string; alt: string }> = {
+// `position` is optional object-position ("50% 70%" shows more of the lower
+// image). These arch crops are tight, so it controls what actually survives.
+export const photos: Record<string, { src: string; alt: string; position?: string }> = {
   hero: { src: "", alt: "Couple, vertical crop, warm evening light" },
   story: { src: "", alt: "Couple in a sunlit courtyard" },
   detail: { src: "", alt: "Hands, rings & embroidered details" },
-  mehndi: { src: "", alt: events[0].photo }, baraat: { src: "", alt: events[1].photo }, walima: { src: "", alt: events[2].photo },
+  // alt describes the actual photograph, not the shot brief it replaced.
+  mehndi: { src: "/images/mehndi.jpg", alt: "Mehndi stage — marigold strings, pink and orange drapes, a neon Mehndi sign and dhol" },
+  baraat: { src: "/images/barat_stage.jpg", alt: "Baraat stage in candlelight — chandeliers, crystal strands and red and white florals", position: "50% 62%" },
+  walima: { src: "/images/walima_stage.jpg", alt: "Walima stage — white roses, hanging greenery and chandeliers above cream seating" },
   bride: { src: "", alt: "Bride with her family" }, groom: { src: "", alt: "Groom with his family" },
   venueMehndi: { src: "", alt: "Mehndi venue and courtyard" }, venueBaraat: { src: "", alt: "Baraat venue exterior at dusk" }, venueWalima: { src: "", alt: "Walima reception venue" },
   portrait: { src: "", alt: "Bride, bridal formals, arched doorway" }, sherwani: { src: "", alt: "Groom, sherwani detail" },
