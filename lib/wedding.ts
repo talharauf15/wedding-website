@@ -1,0 +1,39 @@
+// Replace the marked copy and add local images in public/images before sharing.
+export const wedding = {
+  bride: "Rameen Anjum", groom: "Jhanzaid Ali", monogram: "R & J",
+  brideParents: "Mr. & Mrs. Tahir Hussain", groomParents: "Mr. & Mrs. Anwar Baig",
+  // The wedding day is Baraat & Nikkah — keep in step with events[1].
+  date: "16 January 2027", dateNumeric: "16 · 01 · 2027", weekday: "Saturday",
+  city: "Faisalabad", target: "2027-01-16T18:00:00+05:00",
+  story: "[A short introduction to the couple, how they met, and the journey that brought their families together.]",
+  nikkahMessage: "[A short message on the meaning of the nikkah, in the couple’s or families’ own words.]",
+  verse: "[Verse or dua chosen by the families]", hashtag: "[WeddingHashtag]",
+};
+export const events = [
+  { id: "mehndi", name: "Mehndi", day: "Friday", date: "15 January 2027", short: "Fri 15 Jan", numeral: "15", time: "7:00 PM", dress: "Yellow & green festive", description: "An evening of colour, candlelight, and celebration with our loved ones.", photo: "Mehndi florals, marigold & candlelight", venue: "[Venue Name]", address: "[Street address, area]", parking: "[Valet note]", arrival: "[Gate / timing]", mapQuery: "", schedule: [["7:00 PM", "Guest Arrival", ""], ["7:30 PM", "Family Entrance", ""], ["8:00 PM", "Mehndi Celebration", ""], ["9:00 PM", "Dinner", ""], ["10:30 PM", "Closing", ""]] },
+  { id: "baraat", name: "Baraat & Nikkah", day: "Saturday", date: "16 January 2027", short: "Sat 16 Jan", numeral: "16", time: "6:00 PM", dress: "Formal traditional", description: "The baraat arrives, the nikkah is performed, and the evening closes with dinner and rukhsati.", photo: "Baraat arrival, arched entrance, evening light", venue: "[Venue Name]", address: "[Street address, area]", parking: "[Valet note]", arrival: "[Gate / timing]", mapQuery: "", schedule: [["6:00 PM", "Guest Arrival", ""], ["6:30 PM", "Baraat Arrival", ""], ["7:15 PM", "Nikkah Ceremony", "Guests seated by 7:00 PM"], ["8:00 PM", "Dinner", ""], ["10:00 PM", "Rukhsati", ""]] },
+  { id: "walima", name: "Walima", day: "Sunday", date: "17 January 2027", short: "Sun 17 Jan", numeral: "17", time: "7:00 PM", dress: "Formal evening", description: "Join our families for an evening of gratitude, warm wishes, and dinner.", photo: "Walima table setting, white roses", venue: "[Venue Name]", address: "[Street address, area]", parking: "[Valet note]", arrival: "[Gate / timing]", mapQuery: "", schedule: [["7:00 PM", "Guest Arrival", ""], ["7:30 PM", "Couple Entrance", ""], ["8:30 PM", "Dinner", ""], ["10:30 PM", "Closing", ""]] },
+];
+// Our Story rail. A repeated year is printed once — see page.tsx.
+export const milestones = [
+  { year: "2022", title: "We Met", note: "4 June 2022" },
+  { year: "2022", title: "Our Families Met", note: "1 August 2022" },
+  { year: "2022", title: "Engagement", note: "2 September 2022" },
+  { year: "2027", title: "Forever Begins", note: `${wedding.date}, ${wedding.city}` },
+];
+export const navigation =[["hero", "Home"], ["invitation", "Invitation"], ["story", "Our Story"], ["events", "Events"], ["nikkah", "Nikkah"], ["families", "Families"], ["schedule", "Schedule"], ["venue", "Venue"], ["gallery", "Gallery"]];
+export const photos: Record<string, { src: string; alt: string }> = {
+  hero: { src: "", alt: "Couple, vertical crop, warm evening light" },
+  story: { src: "", alt: "Couple in a sunlit courtyard" },
+  detail: { src: "", alt: "Hands, rings & embroidered details" },
+  mehndi: { src: "", alt: events[0].photo }, baraat: { src: "", alt: events[1].photo }, walima: { src: "", alt: events[2].photo },
+  bride: { src: "", alt: "Bride with her family" }, groom: { src: "", alt: "Groom with his family" },
+  venueMehndi: { src: "", alt: "Mehndi venue and courtyard" }, venueBaraat: { src: "", alt: "Baraat venue exterior at dusk" }, venueWalima: { src: "", alt: "Walima reception venue" },
+  portrait: { src: "", alt: "Bride, bridal formals, arched doorway" }, sherwani: { src: "", alt: "Groom, sherwani detail" },
+  courtyard: { src: "", alt: "Couple walking, courtyard, warm light" }, family: { src: "", alt: "Both families, a candid moment" },
+  closing: { src: "", alt: "Faisalabad architecture in the evening light" },
+};
+export const gallery = [
+  { id: "portrait", category: "Couple" }, { id: "sherwani", category: "Couple" },
+  { id: "detail", category: "Engagement" }, { id: "courtyard", category: "Couple" }, { id: "family", category: "Family" },
+];
