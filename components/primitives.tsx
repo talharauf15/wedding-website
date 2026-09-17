@@ -3,13 +3,13 @@ import { photos } from "@/lib/wedding";
 
 // `position` is object-position: these crops are tight, so it decides which part
 // of a photo survives. "50% 70%" pulls the visible window down the image.
-export type PhotoSpec = { src: string; alt: string; position?: string };
+export type PhotoSpec = { src: string; alt: string; position?: string; zoom?: number };
 // Either `id` (looked up in the shared photos map) or an inline `photo`, which
 // lets list data such as brideParty carry its own portraits.
 export function Photo({ id, photo: spec, className = "", priority = false }: { id?: string; photo?: PhotoSpec; className?: string; priority?: boolean }) {
   const photo = spec ?? photos[id!];
   return <div className={`photo ${className}`}>
-    {photo.src ? <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1100px) 45vw, (min-width: 768px) 60vw, 100vw" priority={priority} className="object-cover" style={photo.position ? { objectPosition: photo.position } : undefined} /> : <div className="photo-placeholder"><span>Photograph to come</span><em>{photo.alt}</em></div>}
+    {photo.src ? <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1100px) 45vw, (min-width: 768px) 60vw, 100vw" priority={priority} className="object-cover" style={{ objectPosition: photo.position, transform: photo.zoom ? `scale(${photo.zoom})` : undefined, transformOrigin: photo.position }} /> : <div className="photo-placeholder"><span>Photograph to come</span><em>{photo.alt}</em></div>}
   </div>;
 }
 export function Arch({ className = "" }: { className?: string }) {

@@ -56,7 +56,7 @@ export default function Home() {
       <section id="party" className="section party"><Heading label="The Bride’s Side">Standing beside <em>her</em></Heading>
         {brideParty.map(group => <div className="party-group" key={group.label}>
           <div className="party-label reveal"><span className="short-rule" /><p className="eyebrow">{group.label}</p><span className="short-rule" /></div>
-          <div className="party-grid">{group.people.map((person, i) => <article className="party-card reveal settle" key={`${group.label}-${i}`} style={{ transitionDelay: `${i * 110}ms` }}><Photo photo={{ src: "", alt: person.alt }} className="portrait-arch" /><h3>{person.name}</h3><p>{person.role}</p></article>)}</div>
+          <div className="party-grid">{group.people.map((person, i) => <article className="party-card reveal settle" key={`${group.label}-${i}`} style={{ transitionDelay: `${i * 110}ms` }}><Photo photo={{ src: person.src ?? "", alt: person.alt, position: person.position, zoom: person.zoom }} className="portrait-arch" /><h3>{person.name}</h3><p>{person.role}</p></article>)}</div>
         </div>)}
       </section>
 

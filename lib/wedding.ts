@@ -36,9 +36,9 @@ export const brideParty = [
   {
     label: "Bride’s Men",
     people: [
-      { name: "[Name]", role: "[Brother]", alt: "Bride’s side, portrait" },
-      { name: "[Name]", role: "[Cousin]", alt: "Bride’s side, portrait" },
-      { name: "[Name]", role: "[Friend]", alt: "Bride’s side, portrait" },
+      { name: "[Name]", role: "[Brother]", alt: "Bride’s side, portrait", src: "/images/Talha.jpg", position: "50% 0%", zoom: 1.9 },
+      { name: "[Name]", role: "[Cousin]", alt: "Bride’s side, portrait", src: "/images/Talha2.jpg", position: "70% 50%", zoom: 1.3 },
+      { name: "[Name]", role: "[Friend]", alt: "Bride’s side, portrait", src: "/images/Talha3.jpg", position: "50% 0%", zoom: 1.9 },
       { name: "[Name]", role: "[Friend]", alt: "Bride’s side, portrait" },
     ],
   },
@@ -56,7 +56,7 @@ export const rsvp = {
 export const navigation =[["hero", "Home"], ["invitation", "Invitation"], ["story", "Our Story"], ["events", "Events"], ["nikkah", "Nikkah"], ["families", "Families"], ["party", "Bride’s Side"], ["schedule", "Schedule"], ["venue", "Venue"], ["gallery", "Gallery"], ["rsvp", "RSVP"]];
 // `position` is optional object-position ("50% 70%" shows more of the lower
 // image). These arch crops are tight, so it controls what actually survives.
-export const photos: Record<string, { src: string; alt: string; position?: string }> = {
+export const photos: Record<string, { src: string; alt: string; position?: string; zoom?: number }> = {
   hero: { src: "", alt: "Couple, vertical crop, warm evening light" },
   story: { src: "", alt: "Couple in a sunlit courtyard" },
   detail: { src: "", alt: "Hands, rings & embroidered details" },
@@ -64,7 +64,7 @@ export const photos: Record<string, { src: string; alt: string; position?: strin
   mehndi: { src: "/images/mehndi.jpg", alt: "Mehndi stage — marigold strings, pink and orange drapes, a neon Mehndi sign and dhol" },
   baraat: { src: "/images/barat_stage.jpg", alt: "Baraat stage in candlelight — chandeliers, crystal strands and red and white florals", position: "50% 62%" },
   walima: { src: "/images/walima_stage.jpg", alt: "Walima stage — white roses, hanging greenery and chandeliers above cream seating" },
-  bride: { src: "", alt: "Bride with her family" }, groom: { src: "", alt: "Groom with his family" },
+  bride: { src: "", alt: "Bride with her family" }, groom: { src: "/images/groom_parent.jpg", alt: "Groom with his family" },
   venueMehndi: { src: "", alt: "Mehndi venue and courtyard" }, venueBaraat: { src: "", alt: "Baraat venue exterior at dusk" }, venueWalima: { src: "", alt: "Walima reception venue" },
   portrait: { src: "", alt: "Bride, bridal formals, arched doorway" }, sherwani: { src: "", alt: "Groom, sherwani detail" },
   courtyard: { src: "", alt: "Couple walking, courtyard, warm light" }, family: { src: "", alt: "Both families, a candid moment" },
