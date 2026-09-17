@@ -178,6 +178,24 @@ html[data-opened] .opening, .opening[data-done] { display: none; }
 .family-parent { font-family: var(--serif); font-size: 21px; }
 .family-spine { height: 1px; background: #b69a6288; position: relative; width: 80%; margin: 0 auto; }
 .family-spine span { position: absolute; width: 8px; height: 8px; background: var(--gold); rotate: 45deg; top: -4px; left: 50%; }
+/* ---------- bride's side ----------
+   ivory3 keeps the tonal descent (families ivory2 → here ivory3 → hard cut to
+   the green schedule), so the one hard break on the page stays where it was. */
+.party { background: var(--ivory3); }
+.party-group { margin-top: 56px; }
+.party-label { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.party-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 20px; margin-top: 32px; }
+.party-card { display: grid; justify-items: center; gap: 10px; text-align: center; min-width: 0; }
+.party-card > .photo { height: 210px; }
+.party-card h3 { font-size: 21px; }
+.party-card p { font-size: 9px; line-height: 1.9; letter-spacing: .24em; text-transform: uppercase; color: var(--goldtext); }
+
+/* ---------- rsvp ---------- */
+.rsvp { background: var(--ivory); }
+.rsvp > .body { max-width: 380px; margin: 24px auto 0; }
+.rsvp > .meta { margin-top: 16px; }
+.rsvp-actions { width: 100%; max-width: 360px; margin-top: 32px; display: grid; gap: 12px; }
+
 .schedule { background: var(--green); color: var(--ivory2); }
 .schedule h2, .schedule h3, .schedule h4 { color: var(--ivory2); }
 .schedule .eyebrow, .schedule .timeline-time { color: var(--gold2); }
@@ -287,6 +305,9 @@ footer > a:last-child { display: flex; min-height: 44px; align-items: center; ga
   .family-spine { width: 1px; height: 460px; margin-top: 40px; }
   .family-spine span { left: -3px; top: 50%; }
   .family-card > .photo { height: 350px; }
+  .party-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px 24px; }
+  .party-card > .photo { height: 230px; }
+  .party-group { margin-top: 64px; }
   .tabs { gap: 40px; }
   .tabs button { font-size: 10px; letter-spacing: .2em; }
   .schedule-panel { max-width: 680px; margin-inline: auto; }
@@ -361,6 +382,10 @@ footer > a:last-child { display: flex; min-height: 44px; align-items: center; ga
   .family-grid { max-width: 1000px; gap: 96px; margin-top: 64px; }
   .family-card > .photo { height: 440px; }
   .family-card h3 { font-size: 40px; }
+  .party-grid { gap: 48px 32px; max-width: 1100px; margin-inline: auto; }
+  .party-card > .photo { height: 300px; }
+  .party-card h3 { font-size: 26px; }
+  .party-group { margin-top: 80px; }
   .schedule-content { margin-top: 48px; }
   .schedule-panel { grid-template-columns: 1fr 1.2fr; gap: 100px; max-width: 1060px; margin-top: 64px; }
   .schedule-title { text-align: left; align-content: start; padding-top: 16px; }

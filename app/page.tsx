@@ -1,7 +1,7 @@
 import { Arch, ArchMark, Heading, Ornament, Photo } from "@/components/primitives";
 import { Countdown, Gallery, MotionController, Navigation, Schedule } from "@/components/interactions";
 import { Opening } from "@/components/opening";
-import { events, milestones, wedding } from "@/lib/wedding";
+import { brideParty, events, milestones, rsvp, wedding } from "@/lib/wedding";
 
 export default function Home() {
   return <>
@@ -53,11 +53,28 @@ export default function Home() {
 
       <section id="families" className="section families"><Heading label="Our Families">With the blessings<br />of our parents</Heading><div className="family-grid"><article className="family-card reveal from-left"><Photo id="bride" className="portrait-arch" /><p className="eyebrow">The Bride</p><h3>{wedding.bride}</h3><p className="meta">Daughter of</p><p className="family-parent">{wedding.brideParents}</p></article><div className="family-spine reveal" aria-hidden="true"><span /></div><article className="family-card reveal from-right"><Photo id="groom" className="portrait-arch" /><p className="eyebrow">The Groom</p><h3>{wedding.groom}</h3><p className="meta">Son of</p><p className="family-parent">{wedding.groomParents}</p></article></div></section>
 
+      <section id="party" className="section party"><Heading label="The Bride’s Side">Standing beside <em>her</em></Heading>
+        {brideParty.map(group => <div className="party-group" key={group.label}>
+          <div className="party-label reveal"><span className="short-rule" /><p className="eyebrow">{group.label}</p><span className="short-rule" /></div>
+          <div className="party-grid">{group.people.map((person, i) => <article className="party-card reveal settle" key={`${group.label}-${i}`} style={{ transitionDelay: `${i * 110}ms` }}><Photo photo={{ src: "", alt: person.alt }} className="portrait-arch" /><h3>{person.name}</h3><p>{person.role}</p></article>)}</div>
+        </div>)}
+      </section>
+
       <section id="schedule" className="section schedule"><Heading label="The Order of the Evening">Every moment, together</Heading><Schedule /></section>
 
       <section id="venue" className="section venues"><Heading label="Venues & Directions">Where to find us</Heading><div className="venue-list">{events.map((event, i) => <article key={event.id} id={`venue-${event.id}`} className={`venue-block venue-${i}`}><div className={`venue-image reveal ${i === 1 ? "from-right" : "from-left"}`}><Photo id={["venueMehndi", "venueBaraat", "venueWalima"][i]} /></div><div className={`venue-copy reveal ${i === 1 ? "from-left" : "from-right"}`}><p className="eyebrow">{event.name} · {event.date}</p><h3>{event.venue}</h3><div className="short-rule" /><p className="body">{event.address}<br />{wedding.city}, Pakistan</p><div className="grid grid-cols-2 gap-6"><div><p className="meta">Parking</p><p className="body">{event.parking}</p></div><div><p className="meta">Arrival</p><p className="body">{event.arrival}</p></div></div><div className="venue-actions">{event.mapQuery ? <><a className="btn btn-solid" target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.mapQuery)}`}>Open in Google Maps</a><a className="btn btn-outline" target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(event.mapQuery)}`}>Get Directions</a></> : <p className="venue-pending">Location and directions will be shared here once confirmed.</p>}</div></div></article>)}</div></section>
 
       <section id="gallery" className="section gallery"><Heading label="Gallery">Moments, so far</Heading><Gallery /></section>
+
+      <section id="rsvp" className="section rsvp center"><Heading label="RSVP">Will you join <em>us</em>?</Heading>
+        <p className="body reveal">Kindly let us know so we can keep a place for you. A message on WhatsApp is all it takes.</p>
+        <p className="meta reveal">Kindly respond by {rsvp.by}</p>
+        <div className="rsvp-actions reveal">
+          {rsvp.whatsapp
+            ? <a className="btn btn-solid" target="_blank" rel="noopener noreferrer" href={`https://wa.me/${rsvp.whatsapp}?text=${encodeURIComponent(rsvp.message)}`}>RSVP on WhatsApp</a>
+            : <p className="venue-pending">The WhatsApp number will be shared here once confirmed.</p>}
+        </div>
+      </section>
 
       <section id="closing" className="closing"><div className="closing-background" data-parallax="40"><Photo id="closing" /><div className="closing-wash" /></div><Arch /><div className="closing-copy center"><p className="eyebrow reveal">Until then</p><h2 className="reveal">We can’t wait to<br /><em>celebrate</em> with you</h2><p className="body reveal">Your presence, prayers and duas mean the world to us.</p><Ornament /><p className="closing-names reveal">{wedding.bride}<em>&amp;</em>{wedding.groom}</p><p className="meta reveal">{wedding.dateNumeric}</p><p className="hashtag reveal">#{wedding.hashtag}</p></div><footer><a className="monogram" href="#hero"><ArchMark />{wedding.monogram}</a><p>With love, from our families to yours</p><a href="#hero">{wedding.city} · 2027 <span aria-hidden="true">↑</span></a></footer></section>
     </main>

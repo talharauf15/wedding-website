@@ -1,8 +1,11 @@
 import Image from "next/image";
 import { photos } from "@/lib/wedding";
 
-export function Photo({ id, className = "", priority = false }: { id: string; className?: string; priority?: boolean }) {
-  const photo = photos[id];
+type PhotoSpec = { src: string; alt: string };
+// Either `id` (looked up in the shared photos map) or an inline `photo`, which
+// lets list data such as brideParty carry its own portraits.
+export function Photo({ id, photo: spec, className = "", priority = false }: { id?: string; photo?: PhotoSpec; className?: string; priority?: boolean }) {
+  const photo = spec ?? photos[id!];
   return <div className={`photo ${className}`}>
     {photo.src ? <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1100px) 45vw, (min-width: 768px) 60vw, 100vw" priority={priority} className="object-cover" /> : <div className="photo-placeholder"><span>Photograph to come</span><em>{photo.alt}</em></div>}
   </div>;

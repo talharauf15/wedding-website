@@ -21,7 +21,39 @@ export const milestones = [
   { year: "2022", title: "Engagement", note: "2 September 2022" },
   { year: "2027", title: "Forever Begins", note: `${wedding.date}, ${wedding.city}` },
 ];
-export const navigation =[["hero", "Home"], ["invitation", "Invitation"], ["story", "Our Story"], ["events", "Events"], ["nikkah", "Nikkah"], ["families", "Families"], ["schedule", "Schedule"], ["venue", "Venue"], ["gallery", "Gallery"]];
+// The bride's side. Rename the labels, and add or remove people freely —
+// the grid reflows to any count.
+export const brideParty = [
+  {
+    label: "Bridesmaids",
+    people: [
+      { name: "[Name]", role: "[Sister]", alt: "Bridesmaid, portrait" },
+      { name: "[Name]", role: "[Cousin]", alt: "Bridesmaid, portrait" },
+      { name: "[Name]", role: "[Friend]", alt: "Bridesmaid, portrait" },
+      { name: "[Name]", role: "[Friend]", alt: "Bridesmaid, portrait" },
+    ],
+  },
+  {
+    label: "Bride’s Men",
+    people: [
+      { name: "[Name]", role: "[Brother]", alt: "Bride’s side, portrait" },
+      { name: "[Name]", role: "[Cousin]", alt: "Bride’s side, portrait" },
+      { name: "[Name]", role: "[Friend]", alt: "Bride’s side, portrait" },
+      { name: "[Name]", role: "[Friend]", alt: "Bride’s side, portrait" },
+    ],
+  },
+];
+
+// RSVP goes to WhatsApp. `whatsapp` is a full international number, digits only,
+// no "+" and no spaces (e.g. 923001234567). While it is empty the section shows
+// a marked placeholder instead of a broken link.
+export const rsvp = {
+  whatsapp: "923422362713",
+  by: "[RSVP by date]",
+  message: `Assalam-o-Alaikum! This is [your name]. I would love to confirm my attendance at the wedding of ${wedding.bride} and ${wedding.groom}, ${wedding.date}, In sha Allah.`,
+};
+
+export const navigation =[["hero", "Home"], ["invitation", "Invitation"], ["story", "Our Story"], ["events", "Events"], ["nikkah", "Nikkah"], ["families", "Families"], ["party", "Bride’s Side"], ["schedule", "Schedule"], ["venue", "Venue"], ["gallery", "Gallery"], ["rsvp", "RSVP"]];
 export const photos: Record<string, { src: string; alt: string }> = {
   hero: { src: "", alt: "Couple, vertical crop, warm evening light" },
   story: { src: "", alt: "Couple in a sunlit courtyard" },
