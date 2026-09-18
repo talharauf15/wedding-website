@@ -1,13 +1,14 @@
 // Replace the marked copy and add local images in public/images before sharing.
 export const wedding = {
-  bride: "Rameen Anjum", groom: "Jhanzaid Ali", monogram: "R & J",
+  bride: "Rameen Anjum", groom: "Jhanzaib Ali", monogram: "R & J",
   brideParents: "Mr. & Mrs. Tahir Hussain", groomParents: "Mr. & Mrs. Anwar Baig",
   // The wedding day is Baraat & Nikkah — keep in step with events[1].
   date: "16 January 2027", dateNumeric: "16 · 01 · 2027", weekday: "Saturday",
   city: "Faisalabad", target: "2027-01-16T18:00:00+05:00",
   story: "[A short introduction to the couple, how they met, and the journey that brought their families together.]",
   nikkahMessage: "[A short message on the meaning of the nikkah, in the couple’s or families’ own words.]",
-  verse: "[Verse or dua chosen by the families]", hashtag: "[WeddingHashtag]",
+  // The closing section adds the "#" and separates them with a gold diamond.
+  hashtags: ["RameenFindsHerAli", "RJ2027"],
 };
 export const events = [
   { id: "mehndi", name: "Mehndi", day: "Friday", date: "15 January 2027", short: "Fri 15 Jan", numeral: "15", time: "7:00 PM", dress: "Yellow & green festive", description: "An evening of colour, candlelight, and celebration with our loved ones.", photo: "Mehndi florals, marigold & candlelight", venue: "Bride's Home", address: "Partab Nagar", mapQuery: "31.412519,73.066630", schedule: [["7:00 PM", "Guest Arrival", ""], ["7:30 PM", "Family Entrance", ""], ["8:00 PM", "Mehndi Celebration", ""], ["9:00 PM", "Dinner", ""], ["10:30 PM", "Closing", ""]] },
@@ -43,6 +44,22 @@ export const brideParty = [
     ],
   },
 ];
+
+// Scripture. Have the Arabic confirmed by your families / whoever leads the
+// nikkah before sharing the site — DESIGN-SPEC §1 keeps this their choice.
+// Arabic renders in Amiri, RTL, line-height 1.9+, letter-spacing exactly 0.
+export const verses = {
+  invitation: {
+    arabic: "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً",
+    translation: "And among His signs is that He created for you mates from among yourselves, that you may find tranquillity in them; and He has placed between you affection and mercy.",
+    source: "Surah Ar-Rum 30:21",
+  },
+  nikkah: {
+    arabic: "بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
+    translation: "May Allah bless you, and shower His blessings upon you, and join you together in goodness.",
+    source: "Sunan Abu Dawud 2130",
+  },
+};
 
 // RSVP goes to WhatsApp. `whatsapp` is a full international number, digits only,
 // no "+" and no spaces (e.g. 923001234567). While it is empty the section shows

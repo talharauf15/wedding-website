@@ -1,7 +1,7 @@
-import { Arch, ArchMark, Heading, Ornament, Photo } from "@/components/primitives";
+import { Arch, ArchMark, Heading, Ornament, Photo, Verse } from "@/components/primitives";
 import { Countdown, Gallery, MotionController, Navigation, Schedule } from "@/components/interactions";
 import { Opening } from "@/components/opening";
-import { brideParty, events, milestones, photos, rsvp, wedding } from "@/lib/wedding";
+import { brideParty, events, milestones, photos, rsvp, verses, wedding } from "@/lib/wedding";
 
 export default function Home() {
   return <>
@@ -18,9 +18,7 @@ export default function Home() {
           <p className="body hero-enter delay-intro">With the blessings of Allah, we invite you to join us as we begin our life together.</p>
           <p className="meta hero-enter delay-date">{wedding.date}<span className="inline-diamond" />{wedding.city}</p>
           <Countdown />
-          <a className="btn btn-solid hero-enter delay-button" href="#events">View Events</a>
-          <a href="#invitation" className="scroll-cue hero-enter delay-button">Scroll to discover <span aria-hidden="true">↓</span></a>
-        </div>
+          <a className="btn btn-solid hero-enter delay-button" href="#events">View Events</a>        </div>
       </section>
 
       <section id="invitation" className="section invitation center">
@@ -32,7 +30,7 @@ export default function Home() {
           <h2 className="invitation-names reveal">{wedding.bride}<em>&amp;</em>{wedding.groom}</h2>
           <div className="parents reveal"><div><p className="meta">Daughter of</p><p>{wedding.brideParents}</p></div><div><p className="meta">Son of</p><p>{wedding.groomParents}</p></div></div>
           <Ornament /><p className="meta reveal">{wedding.weekday}, {wedding.date}</p><p className="body reveal">{wedding.city}, Pakistan</p>
-          <p className="verse-placeholder reveal">{wedding.verse}</p>
+          <Verse verse={verses.invitation} className="reveal" />
         </div>
       </section>
 
@@ -47,7 +45,7 @@ export default function Home() {
         <div className="event-grid">{events.map((event, i) => <article key={event.id} className={`event-card reveal ${i === 1 ? "main-event" : ""}`} style={{ transitionDelay: `${i * 180}ms` }}><span className="ghost-date" aria-hidden="true">{event.numeral}</span>{i === 1 && <p className="eyebrow">The Main Day</p>}<Photo id={event.id} className="landscape-arch" /><h3>{event.name}</h3><p className="meta">{event.short} · {event.time}</p><div className="short-rule" /><p className="event-venue">{event.venue} · {wedding.city}</p><p className="dress-code">Dress code — {event.dress}</p><p className="body">{event.description}</p><a href={`#venue-${event.id}`} className={`btn ${i === 1 ? "btn-gold" : "btn-outline"}`}>View Location</a></article>)}</div>
       </section>
 
-      <section id="nikkah" className="section nikkah center"><p className="eyebrow reveal fade-only">The Ceremony</p><div className="nikkah-arch"><Arch /><div className="center"><h2 className="reveal fade-only">Nikkah</h2><Ornament /><p className="meta reveal fade-only">{wedding.weekday}, {wedding.date}</p><p className="ceremony-time reveal fade-only">7:15 PM</p><p className="body reveal fade-only">{events[1].venue} · {wedding.city}</p></div></div><p className="ceremony-message reveal fade-only">{wedding.nikkahMessage}</p><p className="verse-placeholder reveal fade-only">{wedding.verse}</p>
+      <section id="nikkah" className="section nikkah center"><p className="eyebrow reveal fade-only">The Ceremony</p><div className="nikkah-arch"><Arch /><div className="center"><h2 className="reveal fade-only">Nikkah</h2><Ornament /><p className="meta reveal fade-only">{wedding.weekday}, {wedding.date}</p><p className="ceremony-time reveal fade-only">7:15 PM</p><p className="body reveal fade-only">{events[1].venue} · {wedding.city}</p></div></div><p className="ceremony-message reveal fade-only">{wedding.nikkahMessage}</p><Verse verse={verses.nikkah} className="reveal fade-only" />
         <div className="ceremony-info">{[["Ceremony", "7:15 PM", "Seated by 7:00 PM"], ["Dinner", "8:00 PM", "Main hall"], ["Seating", "[Arrangement]", "[Seating note]"], ["Photography", "[Guidance]", "[Note for guests]"]].map(([label, value, note], i) => <div className="reveal fade-only" key={label} style={{ transitionDelay: `${i * 200}ms` }}><p className="eyebrow">{label}</p><p className="info-value">{value}</p><p className="body">{note}</p></div>)}</div>
       </section>
 
@@ -76,7 +74,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="closing" className="closing"><div className="closing-background" data-parallax="40"><Photo id="closing" /><div className="closing-wash" /></div><Arch /><div className="closing-copy center"><p className="eyebrow reveal">Until then</p><h2 className="reveal">We can’t wait to<br /><em>celebrate</em> with you</h2><p className="body reveal">Your presence, prayers and duas mean the world to us.</p><Ornament /><p className="closing-names reveal">{wedding.bride}<em>&amp;</em>{wedding.groom}</p><p className="meta reveal">{wedding.dateNumeric}</p><p className="hashtag reveal">#{wedding.hashtag}</p></div><footer><a className="monogram" href="#hero"><ArchMark />{wedding.monogram}</a><p>With love, from our families to yours</p><a href="#hero">{wedding.city} · 2027 <span aria-hidden="true">↑</span></a></footer></section>
+      <section id="closing" className="closing"><div className="closing-background" data-parallax="40"><Photo id="closing" /><div className="closing-wash" /></div><Arch /><div className="closing-copy center"><p className="eyebrow reveal">Until then</p><h2 className="reveal">We can’t wait to<br /><em>celebrate</em> with you</h2><p className="body reveal">Your presence, prayers and duas mean the world to us.</p><Ornament /><p className="closing-names reveal">{wedding.bride}<em>&amp;</em>{wedding.groom}</p><p className="meta reveal">{wedding.dateNumeric}</p><p className="hashtag reveal">{wedding.hashtags.map((tag, i) => <span key={tag}>{i > 0 && <span className="inline-diamond" />}#{tag}</span>)}</p></div><footer><a className="monogram" href="#hero"><ArchMark />{wedding.monogram}</a><p>With love, from our families to yours</p><a href="#hero">{wedding.city} · 2027 <span aria-hidden="true">↑</span></a></footer></section>
     </main>
   </>;
 }

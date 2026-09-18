@@ -20,6 +20,15 @@ export function Ornament() { return <div className="ornament" aria-hidden="true"
 export function ArchMark() {
   return <svg className="arch-mark" viewBox="0 0 26 34" fill="none" aria-hidden="true"><path d="M1 33V22A24 24 0 0 1 13 1.2A24 24 0 0 1 25 22v11" /></svg>;
 }
+// Arabic must carry lang/dir so screen readers switch voice and the text shapes
+// RTL; its styling (Amiri, no tracking, 1.9 line-height) lives in .arabic.
+export function Verse({ verse, className = "" }: { verse: { arabic: string; translation: string; source: string }; className?: string }) {
+  return <blockquote className={`verse ${className}`}>
+    <p className="arabic" lang="ar" dir="rtl">{verse.arabic}</p>
+    <p className="verse-translation">{verse.translation}</p>
+    <cite className="verse-source">{verse.source}</cite>
+  </blockquote>;
+}
 export function Heading({ label, children }: { label: string; children: React.ReactNode }) {
   return <div className="section-heading"><p className="eyebrow reveal">{label}</p><h2 className="reveal">{children}</h2></div>;
 }
