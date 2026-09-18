@@ -22,16 +22,18 @@ export const milestones = [
   { year: "2022", title: "Engagement", note: "2 September 2022" },
   { year: "2027", title: "Forever Begins", note: `${wedding.date}, ${wedding.city}` },
 ];
-// The bride's side. Rename the labels, and add or remove people freely —
-// the grid reflows to any count.
-export const brideParty = [
+// The bride's side. Add or remove people freely — both layouts reflow to any
+// count. A group where nobody has `src` renders as a names-only list; give any
+// of them a photo and the whole group becomes a portrait grid instead.
+type PartyMember = { name: string; role?: string; alt?: string; src?: string; position?: string; zoom?: number };
+export const brideParty: { label: string; people: PartyMember[] }[] = [
   {
     label: "Bridesmaids",
     people: [
-      { name: "[Name]", role: "[Sister]", alt: "Bridesmaid, portrait" },
-      { name: "[Name]", role: "[Cousin]", alt: "Bridesmaid, portrait" },
-      { name: "[Name]", role: "[Friend]", alt: "Bridesmaid, portrait" },
-      { name: "[Name]", role: "[Friend]", alt: "Bridesmaid, portrait" },
+      { name: "Anna" }, { name: "Leena" }, { name: "Noor" }, { name: "Illaf" },
+      { name: "Aliha" }, { name: "Fiza" }, { name: "Fatima" }, { name: "Noor e Sehar" },
+      { name: "Adan" }, { name: "Falak" }, { name: "Ilma" }, { name: "Afifa" },
+      { name: "Shafaq" },
     ],
   },
   {

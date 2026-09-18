@@ -54,7 +54,9 @@ export default function Home() {
       <section id="party" className="section party"><Heading label="The Bride’s Side">Standing beside <em>her</em></Heading>
         {brideParty.map(group => <div className="party-group" key={group.label}>
           <div className="party-label reveal"><span className="short-rule" /><p className="eyebrow">{group.label}</p><span className="short-rule" /></div>
-          <div className="party-grid">{group.people.map((person, i) => <article className="party-card reveal settle" key={`${group.label}-${i}`} style={{ transitionDelay: `${i * 110}ms` }}><Photo photo={{ src: person.src ?? "", alt: person.alt, position: person.position, zoom: person.zoom }} className="portrait-arch" sizes="(min-width: 1100px) 275px, (min-width: 768px) 230px, 45vw" /><h3>{person.name}</h3><p>{person.role}</p></article>)}</div>
+          {group.people.some(person => person.src)
+            ? <div className="party-grid">{group.people.map((person, i) => <article className="party-card reveal settle" key={`${group.label}-${i}`} style={{ transitionDelay: `${i * 110}ms` }}><Photo photo={{ src: person.src ?? "", alt: person.alt ?? `${person.name}, portrait`, position: person.position, zoom: person.zoom }} className="portrait-arch" sizes="(min-width: 1100px) 275px, (min-width: 768px) 230px, 45vw" /><h3>{person.name}</h3><p>{person.role}</p></article>)}</div>
+            : <p className="party-names reveal">{group.people.map((person, i) => <span key={`${group.label}-${i}`}>{i > 0 && <span className="inline-diamond" />}{person.name}</span>)}</p>}
         </div>)}
       </section>
 

@@ -192,6 +192,9 @@ html[data-opened] .opening, .opening[data-done] { display: none; }
 .party-card > .photo { height: 210px; }
 .party-card h3 { font-size: 21px; }
 .party-card p { font-size: 9px; line-height: 1.9; letter-spacing: .24em; text-transform: uppercase; color: var(--goldtext); }
+/* Names-only group: a flowing list, not an empty photo grid. Generous
+   line-height so wrapped lines read as deliberate rather than cramped. */
+.party-names { max-width: 760px; margin: 32px auto 0; text-align: center; font-family: var(--serif); font-size: 22px; line-height: 2.1; color: var(--green); }
 
 /* ---------- rsvp ---------- */
 .rsvp { background: var(--ivory); }
