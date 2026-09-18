@@ -33,16 +33,18 @@ export const brideParty: { label: string; people: PartyMember[] }[] = [
       { name: "Anna" }, { name: "Leena" }, { name: "Noor" }, { name: "Illaf" },
       { name: "Aliha" }, { name: "Fiza" }, { name: "Fatima" }, { name: "Noor e Sehar" },
       { name: "Adan" }, { name: "Falak" }, { name: "Ilma" }, { name: "Afifa" },
-      { name: "Shafaq" },
+      { name: "Shafaq" }, { name: "Ayesha" }, { name: "Areesha" }, { name: "Areeba" },
+      { name: "Eshaal" }, { name: "Zunaira" }, { name: "Fariha" }, { name: "Maryam" },
     ],
   },
   {
     label: "Bride’s Men",
     people: [
-      { name: "[Name]", role: "[Brother]", alt: "Bride’s side, portrait", src: "/images/Talha.jpg", position: "50% 0%", zoom: 1.9 },
-      { name: "[Name]", role: "[Cousin]", alt: "Bride’s side, portrait", src: "/images/Talha2.jpg", position: "70% 50%", zoom: 1.3 },
-      { name: "[Name]", role: "[Friend]", alt: "Bride’s side, portrait", src: "/images/Talha3.jpg", position: "50% 0%", zoom: 1.9 },
-      { name: "[Name]", role: "[Friend]", alt: "Bride’s side, portrait" },
+      { name: "Mohyudin" }, { name: "Asad" }, { name: "Ahmed" }, { name: "Talha" },
+      { name: "Haris" }, { name: "Basit" }, { name: "Dayan" }, { name: "Tayyab" },
+      { name: "Sufyaan" }, { name: "Abdulrehman" }, { name: "Abu Herrera" }, { name: "Hassan" },
+      { name: "Ibrahim" }, { name: "Hamza" }, { name: "Zaeem" }, { name: "Daood" },
+      { name: "Abdullah" },
     ],
   },
 ];
