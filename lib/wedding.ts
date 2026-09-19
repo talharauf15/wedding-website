@@ -6,7 +6,6 @@ export const wedding = {
   date: "16 January 2027", dateNumeric: "16 · 01 · 2027", weekday: "Saturday",
   city: "Faisalabad", target: "2027-01-16T18:00:00+05:00",
   story: "[A short introduction to the couple, how they met, and the journey that brought their families together.]",
-  nikkahMessage: "[A short message on the meaning of the nikkah, in the couple’s or families’ own words.]",
   // The closing section adds the "#" and separates them with a gold diamond.
   hashtags: ["RameenFindsHerAli", "RJ2027"],
 };
@@ -58,11 +57,6 @@ export const verses = {
     translation: "And among His signs is that He created for you mates from among yourselves, that you may find tranquillity in them; and He has placed between you affection and mercy.",
     source: "Surah Ar-Rum 30:21",
   },
-  nikkah: {
-    arabic: "بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
-    translation: "May Allah bless you, and shower His blessings upon you, and join you together in goodness.",
-    source: "Sunan Abu Dawud 2130",
-  },
 };
 
 // RSVP goes to WhatsApp. `whatsapp` is a full international number, digits only,
@@ -74,24 +68,16 @@ export const rsvp = {
   message: `Assalam-o-Alaikum! This is [your name]. I would love to confirm my attendance at the wedding of ${wedding.bride} and ${wedding.groom}, ${wedding.date}, In sha Allah.`,
 };
 
-export const navigation =[["hero", "Home"], ["invitation", "Invitation"], ["story", "Our Story"], ["events", "Events"], ["nikkah", "Nikkah"], ["families", "Families"], ["party", "Bride’s Side"], ["schedule", "Schedule"], ["venue", "Venue"], ["gallery", "Gallery"], ["rsvp", "RSVP"]];
+export const navigation =[["hero", "Home"], ["invitation", "Invitation"], ["story", "Our Story"], ["events", "Events"], ["families", "Families"], ["party", "Bride’s Side"], ["schedule", "Schedule"], ["venue", "Venue"], ["rsvp", "RSVP"]];
 // `position` is optional object-position ("50% 70%" shows more of the lower
 // image). These arch crops are tight, so it controls what actually survives.
 export const photos: Record<string, { src: string; alt: string; position?: string; zoom?: number }> = {
   hero: { src: "", alt: "Couple, vertical crop, warm evening light" },
-  story: { src: "", alt: "Couple in a sunlit courtyard" },
-  detail: { src: "", alt: "Hands, rings & embroidered details" },
   // alt describes the actual photograph, not the shot brief it replaced.
   mehndi: { src: "/images/mehndi.jpg", alt: "Mehndi stage — marigold strings, pink and orange drapes, a neon Mehndi sign and dhol" },
   baraat: { src: "/images/barat_stage.jpg", alt: "Baraat stage in candlelight — chandeliers, crystal strands and red and white florals", position: "50% 62%" },
   walima: { src: "/images/walima_stage.jpg", alt: "Walima stage — white roses, hanging greenery and chandeliers above cream seating" },
   bride: { src: "", alt: "Bride with her family" }, groom: { src: "/images/groom_parent.jpg", alt: "Groom with his family" },
   venueMehndi: { src: "", alt: "Mehndi venue and courtyard" }, venueBaraat: { src: "", alt: "Baraat venue exterior at dusk" }, venueWalima: { src: "", alt: "Walima reception venue" },
-  portrait: { src: "", alt: "Bride, bridal formals, arched doorway" }, sherwani: { src: "", alt: "Groom, sherwani detail" },
-  courtyard: { src: "", alt: "Couple walking, courtyard, warm light" }, family: { src: "", alt: "Both families, a candid moment" },
   closing: { src: "", alt: "Faisalabad architecture in the evening light" },
 };
-export const gallery = [
-  { id: "portrait", category: "Couple" }, { id: "sherwani", category: "Couple" },
-  { id: "detail", category: "Engagement" }, { id: "courtyard", category: "Couple" }, { id: "family", category: "Family" },
-];

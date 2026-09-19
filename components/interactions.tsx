@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { events, gallery, navigation, wedding } from "@/lib/wedding";
-import { ArchMark, Photo } from "./primitives";
+import { events, navigation, wedding } from "@/lib/wedding";
+import { ArchMark } from "./primitives";
 
 export function MotionController() {
   useEffect(() => {
@@ -88,14 +88,4 @@ export function Schedule() {
       <div key={event.id} className="schedule-rail">{event.schedule.map(([time, name, note], i) => <div className="timeline-row" key={name} style={{ animationDelay: `${i * 60}ms` }}><span className="timeline-time">{time}</span><div className="timeline-copy"><h4>{name}</h4>{note && <p>{note}</p>}</div></div>)}</div>
     </div>
   </div>;
-}
-
-export function Gallery() {
-  const [filter, setFilter] = useState("All");
-  const [fading, setFading] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
-  const choose = (value: string) => { if (timer.current) clearTimeout(timer.current); setFading(true); timer.current = setTimeout(() => { setFilter(value); setFading(false); }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 150); };
-  const items = gallery.filter(item => filter === "All" || item.category === filter);
-  return <div className="gallery-content reveal"><div className="tabs" role="group" aria-label="Filter photographs">{["All", "Couple", "Engagement", "Family"].map(category => <button key={category} aria-pressed={filter === category} onClick={() => choose(category)}>{category}</button>)}</div><p className="sr-only" aria-live="polite">{items.length} photographs, {filter}</p><div className={`gallery-grid ${filter !== "All" ? "filtered" : ""} ${fading ? "fading" : ""}`}>{items.map((item, i) => <figure key={`${filter}-${item.id}`} style={{ animationDelay: `${i * 110}ms` }}><Photo id={item.id} /><figcaption>{item.category}</figcaption></figure>)}</div><button className="text-button" onClick={() => choose("All")}>View all photographs</button></div>;
 }

@@ -130,10 +130,10 @@ html[data-opened] .opening, .opening[data-done] { display: none; }
 .verse .arabic { font-size: 21px; }
 .verse-translation { font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.85; color: #676857; max-width: 460px; }
 .verse-source { font-style: normal; font-size: 9px; letter-spacing: .24em; text-transform: uppercase; color: var(--goldtext); }
+/* Single column since the photograph column was removed; the max-width keeps
+   the measure inside the spec's 520px body limit on wide screens. */
 .story { display: grid; gap: 48px; }
-.story-images { position: relative; min-width: 0; }
-.story-images > .photo { height: 420px; }
-.story-detail { display: none; }
+.story-copy { max-width: 620px; margin-inline: auto; }
 .story-copy .section-heading { text-align: left; }
 .story-copy > .body { margin-top: 24px; max-width: 520px; }
 .story-rail { margin-top: 36px; }
@@ -161,18 +161,6 @@ html[data-opened] .opening, .opening[data-done] { display: none; }
 .main-event .eyebrow, .main-event .dress-code { color: var(--gold2); }
 .main-event .body, .main-event .meta { color: #deded0; }
 .main-event .ghost-date { color: var(--ivory); top: 255px; }
-.nikkah { padding-block: 112px; gap: 30px; }
-.nikkah-arch { position: relative; width: 100%; max-width: 640px; height: 420px; }
-.nikkah-arch .arch-outline { inset: 0; width: 100%; height: 100%; }
-.nikkah-arch > .center { position: relative; height: 100%; justify-content: center; padding: 64px 24px 0; gap: 20px; }
-.nikkah h2 { text-transform: uppercase; letter-spacing: .2em; font-size: 40px; }
-.ceremony-time { font-family: var(--serif); font-size: 34px; color: var(--green); }
-.ceremony-message { max-width: 440px; font-family: var(--serif); font-size: 21px; font-style: italic; line-height: 1.8; color: #54574a; }
-.ceremony-info { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); width: 100%; max-width: 1000px; border-top: 1px solid #b69a6266; margin-top: 16px; }
-.ceremony-info > div { padding: 24px 8px; border-bottom: 1px solid #b69a624d; }
-.ceremony-info > div:nth-child(odd) { border-right: 1px solid #b69a624d; }
-.ceremony-info .eyebrow { font-size: 8px; letter-spacing: .2em; }
-.info-value { font-family: var(--serif); font-size: 22px; color: var(--green); margin-block: 8px; }
 .families { background: var(--ivory2); }
 .family-grid { display: grid; gap: 40px; margin: 48px auto 0; }
 .family-card { text-align: center; display: grid; justify-items: center; gap: 12px; }
@@ -230,17 +218,6 @@ html[data-opened] .opening, .opening[data-done] { display: none; }
 .venue-copy .eyebrow { line-height: 1.9; }
 .venue-actions { display: grid; gap: 12px; }
 .venue-pending { font-size: 12px; line-height: 1.8; color: #606252; border-top: 1px solid #b69a6266; padding-top: 16px; }
-.gallery { background: var(--ivory3); }
-.gallery-content { margin-top: 32px; }
-.gallery-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin-top: 28px; transition: opacity .15s linear; }
-.gallery-grid figure { position: relative; min-width: 0; height: 200px; overflow: hidden; animation: fade .7s var(--e) both; }
-.gallery-grid figure:first-child { height: 400px; grid-column: span 2; }
-.gallery-grid figure:nth-child(n+4) { height: 230px; grid-column: span 2; }
-.gallery-grid figcaption { position: absolute; top: 16px; left: 16px; background: var(--ivory2); color: var(--green); padding: 5px 8px; font-size: 8px; letter-spacing: .2em; text-transform: uppercase; }
-.gallery-grid .photo { transition: transform .7s var(--e); }
-.gallery-grid .photo-placeholder { transition: padding .7s var(--e); }
-@media (hover:hover) { .gallery-grid figure:hover .photo { transform: scale(1.03); } .gallery-grid figure:hover .photo-placeholder { padding-bottom: 32px; } }
-.text-button { min-height: 44px; display: block; margin: 28px auto 0; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--green); }
 .fading { opacity: 0; }
 .closing { background: var(--green); color: var(--ivory2); position: relative; isolation: isolate; padding-top: 144px; overflow: hidden; }
 .closing-background { position: absolute; z-index: -2; inset: -40px 0 0; transform: translateY(var(--drift,0)); }
@@ -300,18 +277,11 @@ footer > a:last-child { display: flex; min-height: 44px; align-items: center; ga
   .parents { flex-direction: row; gap: 24px; }
   .parents > div { padding-inline: 24px; max-width: 280px; }
   .parents > div:last-child { padding-top: 0; border-top: none; border-left: 1px solid #b69a6255; }
-  .story { grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-  .story-images > .photo { height: 520px; }
   .story-copy h2 { font-size: 42px; }
   .event-grid { grid-template-columns: 1fr 1fr; gap: 48px 32px; }
   .main-event { grid-row: 1; grid-column: span 2; padding: 40px; margin: 0; }
   .main-event > .photo { height: 290px; max-width: 480px; }
   .main-event > .btn { max-width: 400px; }
-  .nikkah { padding-block: 144px; }
-  .nikkah-arch { max-width: 520px; height: 500px; }
-  .nikkah h2 { font-size: 52px; }
-  .ceremony-info { grid-template-columns: repeat(4,minmax(0,1fr)); }
-  .ceremony-info > div:not(:last-child) { border-right: 1px solid #b69a624d; }
   .family-grid { grid-template-columns: minmax(0,1fr) 1px minmax(0,1fr); gap: 28px; max-width: 800px; }
   .family-spine { width: 1px; height: 460px; margin-top: 40px; }
   .family-spine span { left: -3px; top: 50%; }
@@ -325,12 +295,6 @@ footer > a:last-child { display: flex; min-height: 44px; align-items: center; ga
   .schedule-title .btn { max-width: 340px; width: 100%; justify-self: center; }
   .venue-list { gap: 64px; }
   .venue-copy { max-width: 640px; width: 100%; margin-inline: auto; }
-  .gallery-grid { grid-template-columns: repeat(6,minmax(0,1fr)); grid-auto-rows: 220px; gap: 20px; }
-  .gallery-grid figure, .gallery-grid figure:nth-child(n+4) { grid-column: span 2; height: auto; }
-  .gallery-grid figure:first-child { grid-column: span 4; grid-row: span 2; height: auto; }
-  .gallery-grid figure:nth-child(4), .gallery-grid figure:nth-child(5) { grid-column: span 3; }
-  .gallery-grid.filtered figure { grid-column: span 3; grid-row: span 1; height: 350px; }
-  .gallery-grid.filtered { grid-auto-rows: auto; }
   .closing h2 { font-size: 54px; }
   .closing-names { font-size: 46px; }
   footer { flex-direction: row; justify-content: space-between; min-height: 88px; }
@@ -368,10 +332,7 @@ footer > a:last-child { display: flex; min-height: 44px; align-items: center; ga
   .invitation-copy { gap: 28px; }
   .parents { gap: 40px; }
   .parents > div { max-width: 350px; padding-inline: 32px; }
-  .story { gap: 112px; grid-template-columns: 1fr 1fr; padding-block: 160px; }
-  .story-images { padding-right: 64px; padding-bottom: 80px; }
-  .story-images > .photo { height: 560px; }
-  .story-detail { display: block; position: absolute; width: 232px; height: 300px; bottom: 0; right: -12px; border: 8px solid var(--ivory); transform: translateY(var(--drift,0)); }
+  .story { padding-block: 160px; }
   .story-copy h2 { font-size: 56px; }
   .story .timeline-time { flex-basis: 90px; font-size: 34px; }
   .story .timeline-copy { padding-bottom: 40px; }
@@ -384,13 +345,6 @@ footer > a:last-child { display: flex; min-height: 44px; align-items: center; ga
   .main-event > .photo { height: 240px; }
   .event-card .meta { font-size: 10px; letter-spacing: .18em; }
   .event-card .body { font-size: 14px; }
-  .nikkah { padding-block: 192px 176px; }
-  .nikkah-arch { max-width: 640px; height: 580px; }
-  .nikkah h2 { font-size: 64px; }
-  .ceremony-info { margin-top: 32px; }
-  .ceremony-info > div { padding: 32px 16px; }
-  .ceremony-info .eyebrow { font-size: 10px; }
-  .info-value { font-size: 28px; }
   .family-grid { max-width: 1000px; gap: 96px; margin-top: 64px; }
   .family-card > .photo { height: 440px; }
   .family-card h3 { font-size: 40px; }
@@ -417,13 +371,6 @@ footer > a:last-child { display: flex; min-height: 44px; align-items: center; ga
   .venue-2 .venue-copy { grid-template-columns: 1fr 1fr; gap: 12px 32px; max-width: none; }
   .venue-2 .venue-copy > .eyebrow, .venue-2 .venue-copy > h3, .venue-2 .venue-copy > .short-rule { grid-column: span 2; }
   .venue-2 .venue-actions { grid-column: span 2; }
-  .gallery-grid { grid-template-columns: repeat(12,minmax(0,1fr)); grid-auto-rows: 260px; gap: 24px; }
-  .gallery-grid figure:first-child { grid-column: span 5; grid-row: span 2; }
-  .gallery-grid figure:nth-child(2) { grid-column: span 3; }
-  .gallery-grid figure:nth-child(3) { grid-column: span 4; }
-  .gallery-grid figure:nth-child(4) { grid-column: span 4; }
-  .gallery-grid figure:nth-child(5) { grid-column: span 3; }
-  .gallery-grid.filtered figure { grid-column: span 4; grid-row: span 1; height: 420px; }
   .closing { padding-top: 144px; }
   .closing-copy { padding-bottom: 144px; gap: 32px; }
   .closing h2 { font-size: 64px; }
