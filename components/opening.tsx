@@ -1,31 +1,23 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { ArchMark } from "./primitives";
 import { wedding } from "@/lib/wedding";
 
-const SKIP_EVENTS = ["pointerdown", "wheel", "touchmove", "keydown"] as const;
 
-/** The envelope: a sealed ivory cover that parts to reveal the hero underneath.
- *  Plays on every load, skippable, and never shown under reduced motion. */
+/** The envelope: two ivory doors held shut by a wax seal. Tapping the seal splits
+ *  it with the doors and starts the hero underneath. Never shown under reduced motion. */
 export function Opening() {
   const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    // Any intent to interact jumps the cover to its end state.
-    const skip = () => el.getAnimations({ subtree: true }).forEach(a => a.finish());
-    SKIP_EVENTS.forEach(e => addEventListener(e, skip, { once: true, passive: true }));
-    // Skipping and playing out share this path: finish() resolves the same promises.
-    let live = true;
-    Promise.all(el.getAnimations({ subtree: true }).map(a => a.finished))
-      .then(() => { if (live) el.setAttribute("data-done", ""); })
-      .catch(() => { /* cancelled on unmount */ });
-    return () => { live = false; SKIP_EVENTS.forEach(e => removeEventListener(e, skip)); };
-  }, []);
-  return <div ref={ref} className="opening" aria-hidden="true">
-    <div className="opening-panel" />
-    <div className="opening-panel" />
-    <div className="opening-seal"><ArchMark /><p>{wedding.monogram}</p><span className="opening-rule" /></div>
+  const seal = <div className="seal" aria-hidden="true"><ArchMark /><p>{wedding.monogram}</p></div>;
+  return <div ref={ref} className="opening" onAnimationEnd={e => { if (e.animationName === "door-right") ref.current?.setAttribute("data-done", ""); }}>
+    <div className="door door-left"><div className="jaali" />{seal}</div>
+    <div className="door door-right"><div className="jaali" />{seal}</div>
+    <div className="opening-copy">
+      <p className="opening-names">{wedding.bride}<em>&amp;</em>{wedding.groom}</p>
+      <span />
+      <p className="opening-hint">{wedding.date}<br /><em>Tap the seal to open</em></p>
+    </div>
+    <button className="seal-button" aria-label="Open the invitation" onClick={() => document.documentElement.setAttribute("data-opening", "")} />
   </div>;
 }

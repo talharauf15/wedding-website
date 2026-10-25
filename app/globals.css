@@ -54,25 +54,45 @@ h2 em { font-weight: 300; }
 .arch-outline { position: absolute; pointer-events: none; }
 .arch-outline path { stroke: var(--gold); stroke-width: 1; vector-effect: non-scaling-stroke; }
 /* ---------- opening: the envelope ----------
-   Seal settles (0.1–1.45s), then the cover parts (1.45–2.35s). The hero runs on
-   its own clock underneath, so this folds into the existing ~5s opening rather
-   than delaying it. data-opened (set pre-paint in layout.tsx) skips it entirely
-   for return visits and reduced motion. */
-.opening { position: fixed; inset: 0; z-index: 50; pointer-events: none; }
-/* data-opened: reduced motion, hidden pre-paint. data-done: torn down once the flaps finish. */
+   Two ivory doors meet behind a wax seal. Each door carries half of the seal, so
+   when the seal is tapped (data-opening on <html>) it splits with them. The hero's
+   entrance is paused until then, so it plays as the doors part. data-opened (set
+   pre-paint in layout.tsx) skips all of this under reduced motion. */
+.opening { position: fixed; inset: 0; z-index: 50; --seal: 132px; --open: cubic-bezier(.7,0,.3,1); }
+/* data-opened: reduced motion, hidden pre-paint. data-done: torn down once the doors finish. */
 html[data-opened] .opening, .opening[data-done] { display: none; }
-/* 50.5% so the two panels overlap by a hair and never show a seam gap. */
-.opening-panel { position: absolute; left: 0; width: 100%; height: 50.5%; background: var(--ivory2); will-change: transform; }
-.opening-panel:first-child { top: 0; animation: flap-up 900ms var(--e) 1450ms both; }
-.opening-panel:nth-child(2) { bottom: 0; animation: flap-down 900ms var(--e) 1450ms both; }
-@keyframes flap-up { to { transform: translateY(-100%); } }
-@keyframes flap-down { to { transform: translateY(100%); } }
-.opening-seal { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; animation: seal 1350ms var(--e) 100ms both; }
-@keyframes seal { 0% { opacity: 0; } 26%, 74% { opacity: 1; } 100% { opacity: 0; } }
-.opening-seal .arch-mark { width: 44px; height: 58px; stroke-width: 1; }
-.opening-seal p { font-family: var(--serif); font-size: 21px; letter-spacing: .3em; text-indent: .3em; color: var(--green); }
-.opening-rule { width: 56px; height: 1px; background: var(--gold); transform-origin: center; animation: draw-x 900ms var(--e) 450ms both; }
-@keyframes draw-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+html:not([data-opened]):not([data-opening]) { overflow: hidden; }
+html:not([data-opened]):not([data-opening]) .hero * { animation-play-state: paused; }
+.door { position: absolute; top: 0; bottom: 0; width: 50%; overflow: hidden; background: var(--ivory2); }
+.door::after { content: ""; position: absolute; inset: 16px; border: 1px solid #b69a6266; }
+.door-left { left: 0; box-shadow: inset -1px 0 #b69a6266; }
+.door-left::after { right: -1px; border-right: 0; }
+.door-right { right: 0; }
+.door-right::after { left: -1px; border-left: 0; }
+html[data-opening] .door-left { animation: door-left 1.4s var(--open) .25s both; }
+html[data-opening] .door-right { animation: door-right 1.4s var(--open) .25s both; }
+@keyframes door-left { to { transform: translateX(-100%); } }
+@keyframes door-right { to { transform: translateX(100%); } }
+/* The seal is drawn whole in each door and clipped by it: two halves, one seam. */
+.seal { position: absolute; top: 50%; width: var(--seal); height: var(--seal); margin-top: calc(var(--seal) / -2); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: radial-gradient(circle at 36% 30%, #2f5c48, var(--green) 58%, #0f2a1f); box-shadow: inset 0 0 0 6px #193d2e, inset 0 0 0 7px var(--gold2), inset 0 3px 10px #ffffff1a, 0 14px 30px #18392b40, 0 2px 5px #18392b4d; transition: scale .3s var(--e); }
+.door-left .seal { right: calc(var(--seal) / -2); transform-origin: right center; }
+.door-right .seal { left: calc(var(--seal) / -2); transform-origin: left center; }
+.seal .arch-mark { width: 22px; height: 29px; stroke: var(--gold2); }
+.seal p { font-family: var(--serif); font-size: 19px; letter-spacing: .24em; text-indent: .24em; color: var(--ivory); }
+.opening:has(.seal-button:hover) .seal { scale: 1.04; }
+.opening:has(.seal-button:active) .seal, html[data-opening] .seal { scale: .97; }
+.seal-button { position: absolute; left: 50%; top: 50%; width: var(--seal); height: var(--seal); translate: -50% -50%; border: 0; border-radius: 50%; background: none; cursor: pointer; }
+/* A slow ring off the seal: the one hint that it is the way in. */
+.seal-button::after { content: ""; position: absolute; inset: 0; border: 1px solid var(--gold); border-radius: 50%; animation: seal-ring 2.6s var(--e) 1.2s infinite both; }
+@keyframes seal-ring { from { opacity: .9; scale: 1; } to { opacity: 0; scale: 1.5; } }
+html[data-opening] .seal-button { visibility: hidden; }
+.opening-copy { position: absolute; inset: 0; display: grid; grid-template-rows: 1fr calc(var(--seal) + 64px) 1fr; justify-items: center; padding-inline: 32px; text-align: center; pointer-events: none; transition: opacity .4s var(--e); }
+.opening-copy > * { animation: fade 1.2s var(--e) .2s both; }
+html[data-opening] .opening-copy { opacity: 0; }
+.opening-names { align-self: end; font-family: var(--serif); font-size: 34px; font-weight: 300; line-height: 1.15; letter-spacing: .06em; color: var(--green); }
+.opening-names em { display: block; font-size: 24px; line-height: 1.6; color: var(--goldtext); }
+.opening-hint { align-self: start; font-size: 12px; line-height: 2.2; letter-spacing: .2em; color: var(--green); }
+.opening-hint em { font-family: var(--serif); font-size: 18px; letter-spacing: .02em; color: var(--goldtext); }
 .skip-link { position: fixed; z-index: 100; top: -100px; left: 20px; background: var(--green); color: white; padding: 16px; }
 .skip-link:focus { top: 10px; }
 .navigation { height: 64px; padding: 0 20px; position: sticky; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid transparent; transition: height .4s var(--e), background .4s var(--e), border-color .4s; }
