@@ -84,7 +84,7 @@ export function Schedule() {
   return <div className="schedule-content reveal">
     <div className="tabs" role="tablist" aria-label="Wedding event schedules">{events.map((item, i) => <button key={item.id} ref={el => { refs.current[i] = el; }} id={`tab-${item.id}`} role="tab" aria-selected={selected === i} aria-controls="schedule-panel" tabIndex={focused === i ? 0 : -1} onClick={() => choose(i)} onKeyDown={e => { let next = i; if (e.key === "ArrowRight") next = (i + 1) % 3; else if (e.key === "ArrowLeft") next = (i + 2) % 3; else if (e.key === "Home") next = 0; else if (e.key === "End") next = 2; else return; e.preventDefault(); refs.current[next]?.focus(); choose(next); }}>{item.name}</button>)}</div>
     <div id="schedule-panel" role="tabpanel" aria-labelledby={`tab-${event.id}`} tabIndex={0} className={`schedule-panel ${fading ? "fading" : ""}`}>
-      <div className="schedule-title"><h3>{event.name}</h3><p className="meta">{event.day} {event.date}</p><p className="body">{event.venue} · {wedding.city}</p><a className="btn btn-light" href={`#venue-${event.id}`}>View Location</a></div>
+      <div className="schedule-title"><h3>{event.name}</h3><p className="meta">{event.day} {event.date}</p><p className="body">{event.venue} · {wedding.city}</p></div>
       <div key={event.id} className="schedule-rail">{event.schedule.map(([time, name, note], i) => <div className="timeline-row" key={name} style={{ animationDelay: `${i * 60}ms` }}><span className="timeline-time">{time}</span><div className="timeline-copy"><h4>{name}</h4>{note && <p>{note}</p>}</div></div>)}</div>
     </div>
   </div>;
