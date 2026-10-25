@@ -93,6 +93,16 @@ html[data-opening] .opening-copy { opacity: 0; }
 .opening-names em { display: block; font-size: 24px; line-height: 1.6; color: var(--goldtext); }
 .opening-hint { align-self: start; font-size: 12px; line-height: 2.2; letter-spacing: .2em; color: var(--green); }
 .opening-hint em { font-family: var(--serif); font-size: 18px; letter-spacing: .02em; color: var(--goldtext); }
+/* ---------- desktop notice: tablet width and up shows only this ---------- */
+.desktop-notice { display: none; }
+@media (min-width:768px) {
+  body > :not(.desktop-notice) { display: none !important; }
+  .desktop-notice { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; padding: 48px; text-align: center; background: var(--ivory2); font-size: 13px; line-height: 2.2; letter-spacing: .14em; color: var(--green); }
+  .desktop-notice .arch-mark { width: 36px; height: 47px; stroke-width: 1; }
+  .desktop-notice-names { font-family: var(--serif); font-size: 44px; font-weight: 300; line-height: 1.15; letter-spacing: .06em; }
+  .desktop-notice-names em { display: block; font-size: 30px; line-height: 1.6; color: var(--goldtext); }
+  .desktop-notice p > em { font-family: var(--serif); font-size: 22px; letter-spacing: .02em; color: var(--goldtext); }
+}
 .skip-link { position: fixed; z-index: 100; top: -100px; left: 20px; background: var(--green); color: white; padding: 16px; }
 .skip-link:focus { top: 10px; }
 .navigation { height: 64px; padding: 0 20px; position: sticky; top: 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid transparent; transition: height .4s var(--e), background .4s var(--e), border-color .4s; }

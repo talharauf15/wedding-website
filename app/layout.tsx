@@ -7,6 +7,7 @@ import "@fontsource/jost/latin-500.css";
 import "@fontsource/amiri/arabic-400.css";
 import "./globals.css";
 import { wedding } from "@/lib/wedding";
+import { ArchMark } from "@/components/primitives";
 
 export const metadata: Metadata = {
   title: `${wedding.bride} & ${wedding.groom} — ${wedding.date}`,
@@ -25,6 +26,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           envelope flash. See Next.js "preventing flash before hydration". */}
       <script dangerouslySetInnerHTML={{ __html: `(function(){try{if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.setAttribute("data-opened","1")}catch(e){}})()` }} />
     </head>
-    <body suppressHydrationWarning>{children}</body>
+    <body suppressHydrationWarning>
+      {/* The invitation is designed for phones; at tablet width and up this note replaces the page. */}
+      <div className="desktop-notice"><ArchMark /><p className="desktop-notice-names">{wedding.bride}<em>&amp;</em>{wedding.groom}</p><p>This invitation is made for phones.<br /><em>Please open this link on your mobile.</em></p></div>
+      {children}
+    </body>
   </html>;
 }
